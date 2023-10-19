@@ -1,15 +1,19 @@
 import {Component} from 'react'
-class StudentInfo extends Component{
+
+class StudentInfo extends Component {
     render() {
         return <table>
             <tr>
+                <thead>
                 <th>Id</th>
                 <th>Name</th>
                 <th>Age</th>
                 <th>Address</th>
+                </thead>
             </tr>
+            <tbody>
             {this.props.students.map(student => (
-                <tr>
+                <tr key={student.id}>
                     <td>{student.id}</td>
                     <td>{student.name}</td>
                     <td>{student.age}</td>
@@ -17,7 +21,9 @@ class StudentInfo extends Component{
                 </tr>
             ))
             }
+            </tbody>
         </table>;
     }
 }
+
 export default StudentInfo;

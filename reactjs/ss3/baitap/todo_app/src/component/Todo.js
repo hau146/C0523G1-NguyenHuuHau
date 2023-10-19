@@ -41,8 +41,8 @@ class Todo extends Component {
                 </tr>
                 </thead>
                 <tbody>
-                {this.state.list.map(listTodo => (
-                    <tr>
+                {this.state.list.map((listTodo, index) => (
+                    <tr key={index}>
                         <td>{listTodo}</td>
                     </tr>
                 ))}
