@@ -51,6 +51,7 @@ class Todo extends Component {
 
             <input value={this.state.item} onChange={(event) => {
                 this.handleChange(event);
+                
             }} type="text"/>
             <button onClick={this.handleAddItem}>Add</button>
         </div>;
