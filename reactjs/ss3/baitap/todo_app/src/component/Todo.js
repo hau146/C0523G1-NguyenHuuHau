@@ -4,7 +4,7 @@ class Todo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            list: ["ggg", "fsfsfs"],
+            list: [],
             item: ''
         };
         console.log(this.props.list);
