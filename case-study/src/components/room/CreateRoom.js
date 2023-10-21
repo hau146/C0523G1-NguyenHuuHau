@@ -25,6 +25,8 @@ function CreateRoom() {
                                     </div>
                                 </div>
                             </div>
+
+
                             <div className="form-body bg-light p-3">
                                 <div className="row mb-3">
                                     <label htmlFor="name" className="col-sm-3 col-form-label">Diện tích :</label>
@@ -53,7 +55,10 @@ function CreateRoom() {
                             <div className="form-footer bg-dark p-3">
                                 <div>
                                     <a href="" className="btn btn-secondary me-5">Quay lại</a>
-                                    <button type="submit" className="btn btn-primary">Thêm</button>
+
+                                    <button className="btn btn-secondary me-5">
+                                        <span>Thêm</span>
+                                    </button>
                                 </div>
                             </div>
                         </form>
