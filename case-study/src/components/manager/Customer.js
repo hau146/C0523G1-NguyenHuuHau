@@ -1,45 +1,9 @@
-import '../css/table.css'
 import * as customerService from '../../service/customer/customer_service'
-
-export function Manager() {
+import {LayoutManager} from "./LayoutManager";
+export function Customer() {
     return (
         <div className="app-container">
-            <div className="sidebar">
-                <div className="sidebar-header">
-                    <div className="app-icon">
-                        <img style={{height:"150px", width:"100%"}} src="https://i.pinimg.com/564x/11/44/4f/11444f6919d34fae88d70a8ab6f42013.jpg" alt=""/>
-                    </div>
-                </div>
-                <ul className="sidebar-list">
-                    <div className="input">
-                        <button className="value">
-                            Home
-                        </button>
-                        <button className="value">
-                            Customer
-                        </button>
-                        <button className="value">
-                            Contract
-                        </button>
-                        <button className="value">
-                            Villa
-                        </button>
-                        <button className="value">
-                            House
-                        </button>
-                        <button className="value">
-                            Room
-                        </button>
-                    </div>
-                </ul>
-                <div className="account-info">
-                    <div className="account-info-picture">
-                        <img src="https://i.pinimg.com/564x/72/ae/1b/72ae1bdc5e87552c098e6ac6e41db8b6.jpg"
-                             alt="Account"/>
-                    </div>
-                    <div className="account-info-name">Hau Nguyen.</div>
-                </div>
-            </div>
+            <LayoutManager/>
             <div className="app-content">
                 <div className="app-content-header">
                     <h1 className="app-content-headerText">Customers</h1>
@@ -92,6 +56,7 @@ export function Manager() {
                         <div className="products-row" key={customer.id}>
                             <div className="product-index">
                                 {index + 1}
+                                {/*<span className="status active">{index + 1}</span>*/}
                             </div>
                             <div className="product-cell">
                                 <span>{customer.name}</span>
@@ -100,7 +65,7 @@ export function Manager() {
                                 {customer.date}
                             </div>
                             <div className="product-cell">
-                                <span className="status active">{customer.gender}</span>
+                                {customer.gender}
                             </div>
                             <div className="product-cell">{customer.idCard}</div>
                             <div className="product-cell">{customer.numberPhone}</div>

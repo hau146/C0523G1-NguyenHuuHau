@@ -662,3 +662,6 @@ body {
   filter: blur(1px);
   transform: scale(0.95,0.95);
 }
+.value{
+  text-decoration: none;
+}
