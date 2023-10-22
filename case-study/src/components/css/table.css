@@ -427,7 +427,10 @@ body {
   margin-right: 5px;
 }
 .product-index{
-  margin: 0 10px 0 12px;
+  margin: 0 10px 0 15px;
+}
+.product-index2{
+  margin: 0 15px 0 16px;
 }
 .product-name{
   margin: 0 10px 0 17px;
@@ -664,4 +667,14 @@ body {
 }
 .value{
   text-decoration: none;
+}
+.app-content-headerButton{
+  text-decoration: none;
+}
+.link{
+  text-decoration: none;
+  color: white;
+}
+.link:hover{
+  color: white;
 }

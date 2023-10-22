@@ -100,17 +100,17 @@ const customerList = [
         typeCustomer: typeCustomer[3],
         address: "38 Nguyễn Văn Cừ, TP. Đông Hà, Quảng Trị"
     },
-    {
-        id: 10,
-        name: "Trần Văn Tố",
-        date: "12-01-2002",
-        gender: gender[0],
-        idCard: "049080288294",
-        numberPhone: "0970707070",
-        email: "totv@gmail.com",
-        typeCustomer: typeCustomer[2],
-        address: "78 Nguyễn Văn Linh, TP. Tam Kỳ, Quảng Nam"
-    }
+    // {
+    //     id: 10,
+    //     name: "Trần Văn Tố",
+    //     date: "12-01-2002",
+    //     gender: gender[0],
+    //     idCard: "049080288294",
+    //     numberPhone: "0970707070",
+    //     email: "totv@gmail.com",
+    //     typeCustomer: typeCustomer[2],
+    //     address: "78 Nguyễn Văn Linh, TP. Tam Kỳ, Quảng Nam"
+    // }
 ]
 export function getAll() {
     return customerList;

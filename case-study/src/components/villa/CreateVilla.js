@@ -1,3 +1,5 @@
+import '../css/villa.css'
+
 function CreateVilla(){
     return (
         <div className="row">

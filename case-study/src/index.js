@@ -6,6 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Customer} from "./components/manager/Customer";
 import {Room} from "./components/manager/Room";
+import CreateRoom from "./components/room/CreateRoom";
+import {Contract} from "./components/manager/Contract";
+import {House} from "./components/manager/House";
+import CreateHouse from "./components/house/CreateHouse";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
@@ -14,6 +18,10 @@ root.render(
                 <Route path="/" element={<App />}></Route>
                 <Route path="/customer" element={<Customer/>}></Route>
                 <Route path="/room" element={<Room/>}></Route>
+                <Route path="/house" element={<House/>}></Route>
+                <Route path="/contract" element={<Contract/>}></Route>
+                <Route path="/createRoom" element={<CreateRoom/>}></Route>
+                <Route path="/createHouse" element={<CreateHouse/>}></Route>
             </Routes>
         </BrowserRouter>
     </React.StrictMode>

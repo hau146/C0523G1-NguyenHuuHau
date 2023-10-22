@@ -11,22 +11,22 @@ export function LayoutManager(){
                 <ul className="sidebar-list">
                     <div className="input">
                         <Link className="value" to="/">
-                            Home
+                            Trang chủ
                         </Link>
                         <Link className="value" to="/customer">
-                            Customer
+                            Khách hàng
                         </Link>
-                        <Link className="value">
-                            Contract
+                        <Link className="value" to="/contract">
+                            Hợp đồng
                         </Link>
-                        <Link className="value">
-                            Villa
+                        <Link className="value" to="/villa">
+                            Biệt thự
                         </Link>
-                        <Link className="value">
-                            House
+                        <Link className="value" to="/house">
+                            Nhà
                         </Link>
                         <Link className="value" to="/room">
-                            Room
+                            Phòng
                         </Link>
                     </div>
                 </ul>

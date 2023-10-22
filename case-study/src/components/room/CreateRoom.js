@@ -1,3 +1,6 @@
+import {Link} from "react-router-dom";
+import '../css/room.css'
+
 function CreateRoom() {
     return (
         <div className="row">
@@ -54,7 +57,7 @@ function CreateRoom() {
 
                             <div className="form-footer bg-dark p-3">
                                 <div>
-                                    <a href="" className="btn btn-secondary me-5">Quay lại</a>
+                                    <Link to="/room" className="btn btn-secondary me-5">Quay lại</Link>
 
                                     <button className="btn btn-secondary me-5">
                                         <span>Thêm</span>

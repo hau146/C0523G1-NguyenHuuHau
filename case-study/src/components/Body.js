@@ -14,15 +14,15 @@ export function Body() {
                              alt="..."/>
                         <div className="card-body">
                             <h5 className="card-title">{facility.title}</h5>
-                            <p className="card-text">Room size : {facility.size} m<sup>2</sup></p>
+                            <p className="card-text">Diện tích : {facility.size} m<sup>2</sup></p>
                             <div className="d-flex">
                                 <div className="buttons">
                                     <button className="btn"><span></span><p data-start="good luck!" data-text="CLICK"
-                                                                            data-title="EDIT"></p></button>
+                                                                            data-title="SỬA"></p></button>
                                 </div>
                                 <div className="buttons">
                                     <button className="btn"><span></span><p data-start="good luck!" data-text="CLICK"
-                                                                            data-title="DELETE"></p></button>
+                                                                            data-title="XÓA"></p></button>
                                 </div>
                             </div>
                         </div>
@@ -38,15 +38,15 @@ export function Body() {
                              alt="..."/>
                         <div className="card-body">
                             <h5 className="card-title">{facility.title}</h5>
-                            <p className="card-text">Room size : {facility.size} m<sup>2</sup></p>
+                            <p className="card-text">Diện tích : {facility.size} m<sup>2</sup></p>
                             <div className="d-flex">
                                 <div className="buttons">
                                     <button className="btn"><span></span><p data-start="good luck!" data-text="CLICK"
-                                                                            data-title="EDIT"></p></button>
+                                                                            data-title="SỬA"></p></button>
                                 </div>
                                 <div className="buttons">
                                     <button className="btn"><span></span><p data-start="good luck!" data-text="CLICK"
-                                                                            data-title="DELETE"></p></button>
+                                                                            data-title="XÓA"></p></button>
                                 </div>
                             </div>
                         </div>
@@ -62,15 +62,15 @@ export function Body() {
                              alt="..."/>
                         <div className="card-body">
                             <h5 className="card-title">{facility.title}</h5>
-                            <p className="card-text">Room size : {facility.size} m<sup>2</sup></p>
+                            <p className="card-text">Diện tích : {facility.size} m<sup>2</sup></p>
                             <div className="d-flex">
                                 <div className="buttons">
                                     <button className="btn"><span></span><p data-start="good luck!" data-text="CLICK"
-                                                                            data-title="EDIT"></p></button>
+                                                                            data-title="SỬA"></p></button>
                                 </div>
                                 <div className="buttons">
                                     <button className="btn"><span></span><p data-start="good luck!" data-text="CLICK"
-                                                                            data-title="DELETE"></p></button>
+                                                                            data-title="XÓA"></p></button>
                                 </div>
                             </div>
                         </div>

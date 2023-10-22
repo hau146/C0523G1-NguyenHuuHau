@@ -15,27 +15,29 @@ function Header(){
                         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
 
                             <li className="nav-item">
-                                <Link to="/customer" className="nav-link">Customer</Link>
+                                <Link to="/customer" className="nav-link">Khách hàng</Link>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Contract</a>
+                                <Link to="/contract" className="nav-link">Hợp đồng</Link>
                             </li>
                             <li className="nav-item dropdown">
                                 <a className="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                    aria-expanded="false">
-                                    Facility
+                                    Cơ sở Furama
                                 </a>
                                 <ul className="dropdown-menu">
-                                    <li><a className="dropdown-item" href="#">Villa</a></li>
-                                    <li><a className="dropdown-item" href="#">House</a></li>
                                     <li>
-                                        <Link to="/room" className="dropdown-item">Room</Link>
+                                        <Link to="/villa" className="dropdown-item">Biệt thự</Link>                                    </li>
+                                    <li>
+                                        <Link to="/house" className="dropdown-item">Nhà</Link>                                    </li>
+                                    <li>
+                                        <Link to="/room" className="dropdown-item">Phòng</Link>
                                     </li>
                                 </ul>
                             </li>
                         </ul>
                         <form className="d-flex" role="search">
-                            <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search"/>
+                            <input className="form-control me-2" type="search" placeholder="Tìm cơ sở..." aria-label="Search"/>
                         </form>
                     </div>
                 </div>

@@ -1,3 +1,6 @@
+import '../css/house.css'
+import {Link} from "react-router-dom";
+
 function CreateHouse() {
     return (
         <div className="row">
@@ -68,7 +71,7 @@ function CreateHouse() {
 
                             <div className="form-footer bg-dark p-3">
                                 <div>
-                                    <a href="" className="btn btn-secondary me-5">Quay lại</a>
+                                    <Link to="/house" className="btn btn-secondary me-5">Quay lại</Link>
                                     <button type="submit" className="btn btn-primary">Thêm</button>
                                 </div>
                             </div>
