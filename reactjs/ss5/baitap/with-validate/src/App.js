@@ -17,41 +17,41 @@ function App() {
   function handleValidate(){
     const errors = {};
     if (!form.name){
-      errors.name = "Required";
+      errors.name = "Tên không được để trống";
     }
     if (!form.idCard){
-      errors.idCard = "Required";
+      errors.idCard = "CMND không được để trống";
     }
     if (!form.date){
-      errors.date = "Required";
+      errors.date = "Năm sinh không được để trống";
     } else if (form.date < 1900){
-      errors.date = "The year of birth must be greater than 1900";
+      errors.date = "Năm sinh khai báo phải lớn hơn 1900";
     }
     if (!form.nationality){
-      errors.nationality = "Required";
+      errors.nationality = "Quốc tịch không được để trống";
     }
     if (!form.province){
-      errors.province = "Required";
+      errors.province = "Tỉnh/thành không được để trống";
     }
     if (!form.district){
-      errors.district = "Required";
+      errors.district = "Quận/huyện không được để trống";
     }
     if (!form.ward){
-      errors.ward = "Required";
+      errors.ward = "Phường/xã không được để trống";
     }
     if (!form.address){
-      errors.address = "Required";
+      errors.address = "Số nhà, phố, tổ dân phố /thôn /đội không được để trống";
     }
     if (!form.phone){
-      errors.phone = "Required";
+      errors.phone = "Số điện thoại không được để trống";
     }
     if (!form.email){
-      errors.email = "Required";
+      errors.email = "Email không được để trống";
     } else if (!REGEX.email.test(form.email)){
-      errors.email = "Invalid email address";
+      errors.email = "Email phải có định dạng abc@gmail.com";
     }
     if (!form.route){
-      errors.route = "Required";
+      errors.route = "Thông tin không được để trống !";
     }
     return errors;
   }
