@@ -606,7 +606,7 @@ body {
 .gridView .cell-label {
   opacity: 0.6;
 }
-.input {
+.select {
   display: flex;
   flex-direction: column;
   width: 200px;
@@ -660,9 +660,13 @@ body {
   width: 15px
 }
 
-.input:hover > :not(.value:hover) {
+.select:hover > :not(.value:hover) {
   transition: 300ms;
   filter: blur(1px);
+  transform: scale(0.95,0.95);
+}
+.input:hover{
+  transition: 300ms;
   transform: scale(0.95,0.95);
 }
 .value{
@@ -677,4 +681,11 @@ body {
 }
 .link:hover{
   color: white;
+}
+
+.page{
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin: 15px 0;
 }

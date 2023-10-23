@@ -24,3 +24,6 @@ const contractList = [
 export function getAll() {
     return contractList;
 }
+export function create(element) {
+    return contractList.push(element);
+}

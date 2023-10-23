@@ -10,7 +10,7 @@ function CreateHouse() {
 
             <div className="col-lg-6 col-md-8 form">
                 <div className="row">
-                    <div className="col-sm-4 form-create">
+                    <div className="col-sm-4 form-create-house">
                         <p></p>
                     </div>
 

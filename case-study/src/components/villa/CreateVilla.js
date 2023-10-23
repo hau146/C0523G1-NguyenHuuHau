@@ -1,4 +1,5 @@
 import '../css/villa.css'
+import {Link} from "react-router-dom";
 
 function CreateVilla(){
     return (
@@ -9,7 +10,7 @@ function CreateVilla(){
 
             <div className="col-lg-6 col-md-8 form">
                 <div className="row">
-                    <div className="col-sm-4 form-create">
+                    <div className="col-sm-4 form-create-villa">
                         <p></p>
                     </div>
 
@@ -21,7 +22,7 @@ function CreateVilla(){
 
                             <div className="form-body bg-light p-3">
                                 <div className="row mb-3">
-                                    <label htmlFor="name" className="col-sm-3 col-form-label">Tên Dịch vụ :</label>
+                                    <label htmlFor="name" className="col-sm-3 col-form-label">Tên dịch vụ :</label>
                                     <div className="col-sm-9">
                                         <input type="text" className="form-control"/>
                                     </div>
@@ -78,8 +79,8 @@ function CreateVilla(){
 
                             <div className="form-footer bg-dark p-3">
                                 <div>
-                                    <a href="" className="btn btn-secondary me-5">Quay lại</a>
-                                    <button type="submit" className="btn btn-primary">Thêm</button>
+                                    <Link to="/villa" className="btn btn-primary me-5">Quay lại</Link>
+                                    <button type="submit" className="btn btn-secondary">Thêm</button>
                                 </div>
                             </div>
                         </form>

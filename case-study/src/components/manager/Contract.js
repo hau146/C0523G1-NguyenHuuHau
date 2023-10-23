@@ -7,14 +7,14 @@ export function Contract() {
             <LayoutManager/>
             <div className="app-content">
                 <div className="app-content-header">
-                    <h1 className="app-content-headerText">Hợp đồng Furama</h1>
+                    <h1 className="app-content-headerText">Hợp Đồng Furama</h1>
                 </div>
 
                 <div className="app-content-actions">
                     <input className="search-bar" placeholder="Tìm hợp đồng..." type="text"/>
                     <div className="app-content-actions-wrapper">
                         <button className="app-content-headerButton bg-dark">
-                            <Link to="/createRoom" className="link">Thêm hợp đồng mới</Link>
+                            <Link to="/createContract" className="link">Thêm hợp đồng mới</Link>
                         </button>
                     </div>
                 </div>

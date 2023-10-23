@@ -1,6 +1,16 @@
 import * as customerService from '../../service/customer/customer_service'
 import {LayoutManager} from "./LayoutManager";
+import ReactPaginate from 'react-paginate';
+import {useState} from "react";
+
 export function Customer() {
+    const [total, setTotal] = useState(0);
+    const [totalPages, setTotalPages] = useState(0);
+    function handlePageClick() {
+
+    }
+
+    let pageOffset;
     return (
         <div className="app-container">
             <LayoutManager/>
@@ -74,6 +84,28 @@ export function Customer() {
                             <div className="product-cell">{customer.address}</div>
                         </div>
                     ))}
+                    <div className="page">
+                        <ReactPaginate
+                            breakLabel="..."
+                            nextLabel="sau >"
+                            onPageChange={handlePageClick}
+                            pageRangeDisplayed={3}
+                            pageCount={80}
+                            previousLabel="< trước"
+                            pageClassName="page-item"
+                            pageLinkClassName="page-link"
+                            previousClassName="page-item"
+                            previousLinkClassName="page-link"
+                            nextClassName="page-item"
+                            nextLinkClassName="page-link"
+                            breakClassName="page-item"
+                            breakLinkClassName="page-link"
+                            marginPagesDisplayed={2}
+                            containerClassName="pagination"
+                            activeClassName="active"
+                            forcePage={pageOffset}
+                        />
+                    </div>
                 </div>
             </div>
         </div>

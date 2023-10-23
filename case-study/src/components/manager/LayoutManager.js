@@ -9,7 +9,7 @@ export function LayoutManager(){
                     </div>
                 </div>
                 <ul className="sidebar-list">
-                    <div className="input">
+                    <div className="select">
                         <Link className="value" to="/">
                             Trang chủ
                         </Link>

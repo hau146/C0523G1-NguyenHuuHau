@@ -61,7 +61,7 @@ export function Body() {
                              style={{height: "190px"}}
                              alt="..."/>
                         <div className="card-body">
-                            <h5 className="card-title">{facility.title}</h5>
+                            <h5 className="card-title">{facility.name}</h5>
                             <p className="card-text">Diện tích : {facility.size} m<sup>2</sup></p>
                             <div className="d-flex">
                                 <div className="buttons">
@@ -78,6 +78,5 @@ export function Body() {
                 </div>
             ))}
         </div>
-
     );
 }
