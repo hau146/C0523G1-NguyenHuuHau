@@ -2,6 +2,7 @@ import {useEffect} from "react";
 import * as todoService from "../service/todoService";
 import {Field, Form, Formik} from "formik";
 import {useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
 
 export function CreateTodo(){
 
@@ -16,9 +17,9 @@ export function CreateTodo(){
         console.log(status)
         navigate("/")
         if (status === 201){
-            alert("OK")
+            toast.success("OK")
         } else {
-            alert("False")
+            toast.success("False")
         }
     }
 

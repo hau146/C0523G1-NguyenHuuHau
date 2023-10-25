@@ -1,6 +1,7 @@
 import {Field, Form, Formik} from "formik";
 import * as bookService from '../service/bookService'
 import {useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
 
 export function CreateBook() {
     const navigate = useNavigate();
@@ -20,9 +21,9 @@ export function CreateBook() {
         let status = await bookService.createBook(object);
         console.log(status);
         if (status === 201){
-            alert("them thanh cong")
+            toast.success("them thanh cong")
         } else {
-            alert("that bai")
+            toast.error("that bai")
         }
         navigate("/");
     }

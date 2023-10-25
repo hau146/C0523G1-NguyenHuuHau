@@ -1,11 +1,13 @@
 import axios from "axios";
+import {toast} from "react-toastify";
 const URL_TODO = "http://localhost:8080/todo";
+
 export const getAll = async () => {
     try {
         let response = await axios.get(URL_TODO);
         return response.data;
     } catch (e){
-        alert("da xay ra loi !")
+        toast.error("da xay ra loi !")
     }
 }
 export const createTodo = async (values) => {
@@ -13,6 +15,6 @@ export const createTodo = async (values) => {
         let response = await axios.post(URL_TODO, values);
         return response.status;
     } catch (e){
-        alert("false")
+        toast.error("false")
     }
 }

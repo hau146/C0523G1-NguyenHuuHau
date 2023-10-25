@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {CreateTodo} from "./component/CreateTodo";
+import {ToastContainer} from "react-toastify";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,6 +16,7 @@ root.render(
               <Route path="/createTodo" element={<CreateTodo/>}></Route>
           </Routes>
       </BrowserRouter>
+      <ToastContainer></ToastContainer>
   </React.StrictMode>
 );
 

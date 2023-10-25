@@ -2,6 +2,7 @@ import {Field, Form, Formik} from "formik";
 import * as bookService from '../service/bookService'
 import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
+import {toast} from "react-toastify";
 
 export function UpdateBook() {
     const navigate = useNavigate();
@@ -31,10 +32,10 @@ export function UpdateBook() {
         let status = await bookService.updateBook(object);
         console.log(status);
         if (status === 200){
-            alert("sua thanh cong")
+            toast.success("sua thanh cong")
             navigate("/");
         } else {
-            alert("that bai")
+            toast.error("that bai")
         }
     }
 

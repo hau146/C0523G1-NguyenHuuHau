@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {CreateBook} from "./service/CreateBook";
 import {UpdateBook} from "./service/UpdateBook";
+import {ToastContainer} from "react-toastify";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,6 +18,7 @@ root.render(
               <Route path="/updateBook/:id" element={<UpdateBook/>}></Route>
           </Routes>
       </BrowserRouter>
+      <ToastContainer></ToastContainer>
   </React.StrictMode>
 );
 
