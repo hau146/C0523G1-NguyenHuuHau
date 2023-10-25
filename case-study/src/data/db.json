@@ -1,0 +1,81 @@
+{
+  "customer": [
+    {
+      "id": 1,
+      "name": "Hậu Nguyễn",
+      "date": "2002-02-14",
+      "gender": 0,
+      "idCard": 949485748394,
+      "numberPhone": 909345933,
+      "email": "hau@gmail.com",
+      "typeCustomer": "Platinum",
+      "address": "Liên chiểu, đà nẵng"
+    },
+    {
+      "id": 2,
+      "name": "Trịnh Đình Tuấn",
+      "date": "2002-11-21",
+      "gender": 0,
+      "idCard": "046808088993",
+      "numberPhone": "04565393939",
+      "email": "tuantd@gmail.com",
+      "typeCustomer": "Member",
+      "address": "53 Ngô Quyền, TP. Huế, Thừa Thiên Huế"
+    },
+    {
+      "id": 3,
+      "name": "Trần Tứ Xuyên",
+      "date": "1994-02-22",
+      "gender": 1,
+      "idCard": "048089888991",
+      "numberPhone": "0965757575",
+      "email": "xuyentt@gmail.com",
+      "typeCustomer": "Silver",
+      "address": "217 Nguyễn Thị Minh Khai, TP. Đà Nẵng"
+    },
+    {
+      "id": 4,
+      "name": "Bùi Thanh Tâm",
+      "date": "2001-12-23",
+      "gender": 1,
+      "idCard": "046109088289",
+      "numberPhone": "0984848484",
+      "email": "tambt@gmail.com",
+      "typeCustomer": "Diamond",
+      "address": "53 Nguyễn Văn Cừ, TP. Huế, Thừa Thiên Huế"
+    },
+    {
+      "id": 5,
+      "name": "Vũ Văn Thông",
+      "date": "2000-01-19",
+      "gender": 0,
+      "idCard": "048909088899",
+      "numberPhone": "0907373737",
+      "email": "thongvv@gmail.com",
+      "typeCustomer": "Diamond",
+      "address": "76 Hùng Vương, TP. Đà Nẵng"
+    },
+    {
+      "id": 6,
+      "name": "Bùi Thanh Quang",
+      "date": "1995-02-24",
+      "gender": 0,
+      "idCard": "0934753494",
+      "numberPhone": "0967676767",
+      "email": "quangbt@gmail.com",
+      "typeCustomer": "Gold",
+      "address": "90 Nguyễn Tất Thành, TP. Đà Nẵng"
+    },
+    {
+      "id": 7,
+      "name": "Nguyễn Hồng Tiên",
+      "date": "1997-12-06",
+      "gender": 1,
+      "idCard": "044289888387",
+      "numberPhone": "0907373737",
+      "email": "tiennh@gmail.com",
+      "typeCustomer": "Platinum",
+      "address": "56 Nguyễn Văn Cừ, TP. Quảng Trạch, Quảng Bình"
+    }
+  ]
+}

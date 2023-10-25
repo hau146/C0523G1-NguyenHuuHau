@@ -13,7 +13,6 @@ function CreateRoom() {
     const listLease = roomService.lease;
     const REGEX = {
         name: /^[^0-9]*$/g,
-        img: /^[^0-9]*$/g,
         freeService: /^[a-zA-Z0-9,]*$/g
     }
     function handleChange(event) {
@@ -32,8 +31,6 @@ function CreateRoom() {
         }
         if (!formRoom.img) {
             error.img = "Ảnh không được để trống !"
-        } else if(!REGEX.img.test(formRoom.img)){
-            error.name = "Ảnh không được chứa kí tự số !"
         }
         if (!formRoom.size) {
             error.size = "Diện tích phòng không được để trống !"

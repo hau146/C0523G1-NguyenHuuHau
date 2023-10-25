@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {Customer} from "./components/manager/Customer";
+import {Customer} from "./components/customer/Customer";
 import {Room} from "./components/manager/Room";
 import CreateRoom from "./components/room/CreateRoom";
 import {Contract} from "./components/manager/Contract";
@@ -15,6 +15,8 @@ import CreateVilla from "./components/villa/CreateVilla";
 import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
 import CreateContract from "./components/contract/CreateContract";
+import CreateCustomer from "./components/customer/CreateCustomer";
+import UpdateCustomer from "./components/customer/UpdateCustomer";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
@@ -32,6 +34,8 @@ root.render(
                 <Route path="/createRoom" element={<CreateRoom/>}></Route>
                 <Route path="/createHouse" element={<CreateHouse/>}></Route>
                 <Route path="/createContract" element={<CreateContract/>}></Route>
+                <Route path="/createCustomer" element={<CreateCustomer/>}></Route>
+                <Route path="/updateCustomer/:id" element={<UpdateCustomer/>}></Route>
             </Routes>
             <ToastContainer></ToastContainer>
         </BrowserRouter>

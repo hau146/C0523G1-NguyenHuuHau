@@ -16,14 +16,14 @@ function CreateContract() {
     }
     const validateObject = {
         startDay: Yup.date()
-            .required("Ngày tạo hợp đồng không được để trống")
+            .required("Ngày tạo hợp đồng không được để trống !")
             .min(new Date().getDay(), "Ngày bắt đầu thuê không được bé hơn ngày hiện tại"),
 
         endDay: Yup.string()
             .required("Ngày kết thúc hợp đồng không được để trống")
             .min(new Date().getDay(), "Ngày hết hợp đồng không được bé hơn ngày hiện tại"),
         deposit: Yup.number()
-            .required("Tiền đặt cọc không được để trống")
+            .required("Tiền đặt cọc không được để trống !")
             .min(5000000, "Tiền đặt cọc không được nhỏ hơn 5.000.000"),
         totalPrice: Yup.number()
             .required("Tổng tiền không được để trống")
@@ -75,7 +75,7 @@ function CreateContract() {
                                         <label htmlFor="name" className="col-sm-4 col-form-label">Ngày bắt đầu thuê
                                             :</label>
                                         <div className="col-sm-8">
-                                            <div className="input">
+                                            <div className={`Field ${initValue.startDay ? "input-error" : ""}`}>
                                                 <Field
                                                     type="date"
                                                     name="startDay"
@@ -142,7 +142,7 @@ function CreateContract() {
 
                                 <div className="form-footer bg-dark p-3">
                                     <div>
-                                        <Link to="/room" className="btn btn-primary me-5">Quay lại</Link>
+                                        <Link to="/contract" className="btn btn-primary me-5">Quay lại</Link>
                                         <button type="submit" className="btn btn-secondary me-5">
                                             <span>Thêm</span>
                                         </button>

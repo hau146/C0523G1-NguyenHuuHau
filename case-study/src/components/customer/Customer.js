@@ -1,16 +1,55 @@
 import * as customerService from '../../service/customer/customer_service'
-import {LayoutManager} from "./LayoutManager";
+import {LayoutManager} from "../manager/LayoutManager";
 import ReactPaginate from 'react-paginate';
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
+import {date} from "yup";
 
-export function Customer() {
+export function Customer(s) {
     const [total, setTotal] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
+    const [customer, setCustomer] = useState([])
+    const navigate = useNavigate();
+    let idDelete = -1;
+
+    useEffect(() =>{
+        getAll();
+    }, []);
+
+    const getAll = async () => {
+        let response = await customerService.getAll();
+        setCustomer(response);
+    }
     function handlePageClick() {
 
     }
 
-    let pageOffset;
+    function formatDateWrite(date) {
+        const parts = date.split("-");
+        const day = parts[2];
+        const month = parts[1];
+        const year = parts[0];
+        return day + "/" + month + "/" + year;
+    }
+
+    const deleteById = async id => {
+        let status = await customerService.deleteCustomer(id);
+        console.log("status" + status);
+        if (status === 200){
+            toast.success("Xóa thành công !");
+            getAll();
+        } else {
+            toast.warning("Xóa thất bại !");
+        }
+    }
+
+    const sendInfoToModal = async (id,name) => {
+        console.log("OK" + id);
+        document.getElementById("name_delete").innerText = name;
+            idDelete = id;
+        console.log(idDelete + " id đã có")
+    }
     return (
         <div className="app-container">
             <LayoutManager/>
@@ -22,7 +61,9 @@ export function Customer() {
                 <div className="app-content-actions">
                     <input className="search-bar" placeholder="Tìm tên khách hàng..." type="text"/>
                     <div className="app-content-actions-wrapper">
-                        <button className="app-content-headerButton bg-dark">Thêm khách hàng</button>
+                        <button className="app-content-headerButton bg-dark">
+                            <Link to="/createCustomer" className="link">Thêm khách hàng mới</Link>
+                        </button>
                     </div>
                 </div>
                 <div className="products-area-wrapper tableView">
@@ -61,27 +102,38 @@ export function Customer() {
                             <button className="sort-button">
                             </button>
                         </div>
+                        <div className="product-cell price">Thao tác
+                            <button className="sort-button">
+                            </button>
+                        </div>
                     </div>
-                    {customerService.getAll().map((customer, index) => (
+                    {customer.map((customer, index) => (
                         <div className="products-row" key={customer.id}>
                             <div className="product-index2">
                                 {index + 1}
-                                {/*<span className="status active">{index + 1}</span>*/}
                             </div>
                             <div className="product-cell">
                                 <span>{customer.name}</span>
                             </div>
                             <div className="product-cell">
-                                {customer.date}
+                                {formatDateWrite(customer.date)}
                             </div>
                             <div className="product-cell">
-                                {customer.gender}
+                                {customer.gender ? <p>Nữ</p> : <p>Nam</p>}
                             </div>
                             <div className="product-cell">{customer.idCard}</div>
                             <div className="product-cell">{customer.numberPhone}</div>
                             <div className="product-cell">{customer.email}</div>
                             <div className="product-cell">{customer.typeCustomer}</div>
                             <div className="product-cell">{customer.address}</div>
+                            <div className="product-cell">
+                                <Link to={`/updateCustomer/${customer.id}`} className="nav-link">Sửa</Link>
+                                {/*<Link to="/customer" className="nav-link" ></Link>*/}
+
+                                <button onClick={(event) => sendInfoToModal(customer.id,customer.name)} style={{margin: "0 0 0 15px"}} type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Xóa
+                                </button>
+                            </div>
                         </div>
                     ))}
                     <div className="page">
@@ -90,7 +142,7 @@ export function Customer() {
                             nextLabel="sau >"
                             onPageChange={handlePageClick}
                             pageRangeDisplayed={3}
-                            pageCount={80}
+                            pageCount={10}
                             previousLabel="< trước"
                             pageClassName="page-item"
                             pageLinkClassName="page-link"
@@ -103,8 +155,29 @@ export function Customer() {
                             marginPagesDisplayed={2}
                             containerClassName="pagination"
                             activeClassName="active"
-                            forcePage={pageOffset}
                         />
+                    </div>
+                </div>
+            </div>
+
+            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">Xóa Khách Hàng !</h1>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <input type="hidden" name="id_delete"/>
+                            Bạn có chắc muốn xóa khách hàng <span id="name_delete" className="text-danger"></span> ?
+                            <h5 style={{color:"red",fontSize:"21px"}}>Lưu ý : Hành động này không thể hoàn tác !</h5>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                            <button data-bs-dismiss="modal" onClick={(event) => deleteById(idDelete)} type="button" className="btn btn-primary">Xác nhận</button>
+                        </div>
                     </div>
                 </div>
             </div>

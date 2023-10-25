@@ -42,6 +42,10 @@ export function Contract() {
                             <button className="sort-button">
                             </button>
                         </div>
+                        <div className="product-cell price">Thao tác
+                            <button className="sort-button">
+                            </button>
+                        </div>
                     </div>
                     {contractService.getAll().map((contract, index) => (
                         <div className="products-row" key={contract.id}>
@@ -60,6 +64,10 @@ export function Contract() {
                             </div>
                             <div className="product-cell">{contract.deposit}</div>
                             <div className="product-cell">{contract.totalPrice}</div>
+                            <div className="product-cell">
+                                <Link to="/customer" className="nav-link">Sửa</Link>
+                                <Link to="/customer" className="nav-link" style={{margin:"0 0 0 25px"}}>Xóa</Link>
+                            </div>
                         </div>
                     ))}
                 </div>
