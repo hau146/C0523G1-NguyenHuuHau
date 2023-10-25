@@ -1,0 +1,22 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Dinh Long",
+      "email": "long1110dn@gmail.com",
+      "website": "dinhlong.com"
+    },
+    {
+      "id": 2,
+      "name": "Nha Van",
+      "email": "nhavan@gmail.com",
+      "website": "nhavan.com"
+    },
+    {
+      "id": 3,
+      "name": "Hong Hanh",
+      "email": "honghanh@gmail.com",
+      "website": "honghanh.com"
+    }
+  ]
+}
