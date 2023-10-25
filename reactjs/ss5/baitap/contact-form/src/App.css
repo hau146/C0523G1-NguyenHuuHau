@@ -17,5 +17,6 @@ label {
 
 .error {
   color: red;
-  margin: 0;
+  text-align: center;
+  margin: 0 19px;
 }
