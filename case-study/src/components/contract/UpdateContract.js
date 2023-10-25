@@ -1,19 +1,27 @@
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import '../css/contract.css'
 import '../css/validate.css'
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import {toast} from "react-toastify";
 import * as Yup from "yup"
 import * as contractService from '../../service/contract/contract_service'
+import {useEffect, useState} from "react";
 
-function CreateContract() {
+function UpdateContract() {
     const navigate = useNavigate();
-    const initValue = {
-        name: "",
-        startDay: "",
-        endDay: "",
-        deposit: "",
-        totalPrice: ""
+    const [contract, setContract] = useState();
+    const {id} = useParams();
+    useEffect(() => {
+        if (id) contractById(id);
+    }, [id]);
+    const contractById = id => {
+        console.log(id);
+        contractService.findById(id).then(res => {
+            res.deposit = +res.deposit;
+            res.totalPrice = +res.totalPrice;
+            setContract(res);
+            console.log(contract)
+        })
     }
 
     const validateObject = {
@@ -35,7 +43,7 @@ function CreateContract() {
     }
 
 
-    const createContract = async (values) => {
+    const updateContract = async (values) => {
         const object = {
             name: values.name,
             startDay: values.startDay,
@@ -46,13 +54,14 @@ function CreateContract() {
         let status = await contractService.createContract(object);
         console.log(status)
         if (status === 201){
-            toast.success(`Thêm mới hợp đồng ${values.name} thành công !`);
+            toast.success(`Sửa hợp đồng ${values.name} thành công !`);
             navigate("/contract");
         } else {
-            toast.warning("Thêm mới thất bại !")
+            toast.warning("Sửa thất bại !")
         }
     }
 
+    if (!contract) return null;
     return (
         <div className="row">
             <div className="col-lg-3 col-md-2">
@@ -65,14 +74,14 @@ function CreateContract() {
                         <p></p>
                     </div>
                     <Formik
-                        initialValues={initValue}
-                        onSubmit={(values) => createContract(values)}
+                        initialValues={contract}
+                        onSubmit={(values) => updateContract(values)}
                         validationSchema={Yup.object(validateObject)}
                     >
                         <div className="col-sm-8 p-0 form-input">
                             <Form>
                                 <div className="form-header bg-dark">
-                                    <h2 className="text-light fw-bold ms-3">Thêm mới hợp đồng</h2>
+                                    <h2 className="text-light fw-bold ms-3">Sửa hợp đồng</h2>
                                 </div>
                                 <div className="form-body bg-light p-3">
                                     <div className="row mb-3">
@@ -104,6 +113,7 @@ function CreateContract() {
                                             <ErrorMessage name="startDay" component="span"
                                                           style={{color: "red"}}></ErrorMessage>
                                         </div>
+
                                     </div>
                                 </div>
                                 <div className="form-body bg-light p-3">
@@ -130,7 +140,7 @@ function CreateContract() {
                                         <div className="col-sm-8">
                                             <div className="input">
                                                 <Field
-                                                    type="number"
+                                                    type="text"
                                                     name="deposit"
                                                     className="form-control"/>
                                             </div>
@@ -147,7 +157,7 @@ function CreateContract() {
                                         <div className="col-sm-8">
                                             <div className="input">
                                                 <Field
-                                                    type="number"
+                                                    type="text"
                                                     name="totalPrice"
                                                     className="form-control"/>
                                             </div>
@@ -163,7 +173,7 @@ function CreateContract() {
                                     <div>
                                         <Link to="/contract" className="btn btn-primary me-5">Quay lại</Link>
                                         <button type="submit" className="btn btn-secondary me-5">
-                                            <span>Thêm</span>
+                                            <span>Sửa</span>
                                         </button>
                                     </div>
                                 </div>
@@ -176,4 +186,4 @@ function CreateContract() {
     );
 }
 
-export default CreateContract;
+export default UpdateContract;

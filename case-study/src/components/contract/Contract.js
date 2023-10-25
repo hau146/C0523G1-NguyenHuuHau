@@ -1,59 +1,53 @@
-import * as customerService from '../../service/customer/customer_service'
+import * as contractService from '../../service/contract/contract_service'
 import {LayoutManager} from "../manager/LayoutManager";
-import ReactPaginate from 'react-paginate';
+import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
-import {toast} from "react-toastify";
 import {FormatDay} from "../format/FormatDay";
+import {toast} from "react-toastify";
 
-export function Customer(s) {
-    const [total, setTotal] = useState(0);
-    const [totalPages, setTotalPages] = useState(0);
-    const [customer, setCustomer] = useState([])
+export function Contract() {
+    const [contract, setContract] = useState([]);
     let idDelete = -1;
-
-    useEffect(() =>{
+    useEffect(() => {
         getAll();
-    }, []);
+    },[]);
 
     const getAll = async () => {
-        let response = await customerService.getAll();
-        setCustomer(response);
-    }
-    function handlePageClick() {
-
+        let response = await contractService.getAll();
+        setContract(response);
     }
 
-    const deleteById = async id => {
-        let status = await customerService.deleteCustomer(id);
-        console.log("status" + status);
+
+    function sendInfoToModal(id, name) {
+        document.getElementById("name_delete").innerText = name;
+        idDelete = id;
+        console.log(idDelete + " id đã có")
+    }
+
+    const deleteById = async (idDelete) => {
+        let status = await contractService.deleteContract(idDelete);
+        console.log(status);
         if (status === 200){
-            toast.success("Xóa thành công !");
+            toast.success(`Xóa thành công hợp đồng !`);
             getAll();
         } else {
             toast.warning("Xóa thất bại !");
         }
     }
 
-    const sendInfoToModal = async (id,name) => {
-        console.log("OK" + id);
-        document.getElementById("name_delete").innerText = name;
-            idDelete = id;
-        console.log(idDelete + " id đã có")
-    }
     return (
         <div className="app-container">
             <LayoutManager/>
             <div className="app-content">
                 <div className="app-content-header">
-                    <h1 className="app-content-headerText">Khách Hàng</h1>
+                    <h1 className="app-content-headerText">Hợp Đồng Furama</h1>
                 </div>
 
                 <div className="app-content-actions">
-                    <input className="search-bar" placeholder="Tìm tên khách hàng..." type="text"/>
+                    <input className="search-bar" placeholder="Tìm hợp đồng..." type="text"/>
                     <div className="app-content-actions-wrapper">
                         <button className="app-content-headerButton bg-dark">
-                            <Link to="/createCustomer" className="link">Thêm khách hàng mới</Link>
+                            <Link to="/createContract" className="link">Thêm hợp đồng mới</Link>
                         </button>
                     </div>
                 </div>
@@ -61,35 +55,23 @@ export function Customer(s) {
                     <div className="products-header">
                         <div className="product-index">#
                         </div>
-                        <div className="product-cell image">Tên khách hàng
+                        <div className="product-cell category">Tên hợp đồng
                             <button className="sort-button">
                             </button>
                         </div>
-                        <div className="product-cell category">Ngày sinh
+                        <div className="product-cell category">Ngày bắt đầu thuê
                             <button className="sort-button">
                             </button>
                         </div>
-                        <div className="product-cell status-cell">Giới tính
+                        <div className="product-cell status-cell">Ngày kết thúc thuê
                             <button className="sort-button">
                             </button>
                         </div>
-                        <div className="product-cell sales">Số CMMD
+                        <div className="product-cell sales">Giá đặt cọc (vnđ)
                             <button className="sort-button">
                             </button>
                         </div>
-                        <div className="product-cell stock">Số điện thoại
-                            <button className="sort-button">
-                            </button>
-                        </div>
-                        <div className="product-cell price">Email
-                            <button className="sort-button">
-                            </button>
-                        </div>
-                        <div className="product-cell price">Loại khách
-                            <button className="sort-button">
-                            </button>
-                        </div>
-                        <div className="product-cell price">Địa chỉ
+                        <div className="product-cell price">Tổng tiền thanh toán (vnđ)
                             <button className="sort-button">
                             </button>
                         </div>
@@ -98,29 +80,26 @@ export function Customer(s) {
                             </button>
                         </div>
                     </div>
-                    {customer.map((customer, index) => (
-                        <div className="products-row" key={customer.id}>
+                    {contract.map((contract, index) => (
+                        <div className="products-row" key={contract.id}>
                             <div className="product-index2">
                                 {index + 1}
                             </div>
                             <div className="product-cell">
-                                <span>{customer.name}</span>
+                                {contract.name}
                             </div>
                             <div className="product-cell">
-                                {FormatDay(customer.date)}
+                                {FormatDay(contract.startDay)}
                             </div>
                             <div className="product-cell">
-                                {customer.gender ? <p>Nữ</p> : <p>Nam</p>}
+                                {FormatDay(contract.endDay)}
                             </div>
-                            <div className="product-cell">{customer.idCard}</div>
-                            <div className="product-cell">{customer.numberPhone}</div>
-                            <div className="product-cell">{customer.email}</div>
-                            <div className="product-cell">{customer.typeCustomer}</div>
-                            <div className="product-cell">{customer.address}</div>
+                            <div className="product-cell">{contract.deposit}</div>
+                            <div className="product-cell">{contract.totalPrice}</div>
                             <div className="product-cell">
-                                <Link to={`/updateCustomer/${customer.id}`} className="nav-link">SỬA</Link>
+                                <Link to={`/updateContract/${contract.id}`} className="nav-link">SỬA</Link>
 
-                                <button onClick={(event) => sendInfoToModal(customer.id,customer.name)}
+                                <button onClick={(event) => sendInfoToModal(contract.id,contract.name)}
                                         style={{margin: "0 0 0 5px", background: "transparent",border: "none", color:"black",fontSize:"13px"}}
                                         type="button"
                                         className="btn btn-primary" data-bs-toggle="modal"
@@ -130,27 +109,6 @@ export function Customer(s) {
                             </div>
                         </div>
                     ))}
-                    <div className="page">
-                        <ReactPaginate
-                            breakLabel="..."
-                            nextLabel="sau >"
-                            onPageChange={handlePageClick}
-                            pageRangeDisplayed={3}
-                            pageCount={10}
-                            previousLabel="< trước"
-                            pageClassName="page-item"
-                            pageLinkClassName="page-link"
-                            previousClassName="page-item"
-                            previousLinkClassName="page-link"
-                            nextClassName="page-item"
-                            nextLinkClassName="page-link"
-                            breakClassName="page-item"
-                            breakLinkClassName="page-link"
-                            marginPagesDisplayed={2}
-                            containerClassName="pagination"
-                            activeClassName="active"
-                        />
-                    </div>
                 </div>
             </div>
 
@@ -159,13 +117,13 @@ export function Customer(s) {
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="exampleModalLabel">Xóa Khách Hàng !</h1>
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">Xóa Hợp Đồng !</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
                             <input type="hidden" name="id_delete"/>
-                            Bạn có chắc muốn xóa khách hàng <span id="name_delete" className="text-danger"></span> ?
+                            Bạn có chắc muốn xóa hợp đồng <span id="name_delete" className="text-danger"></span> này?
                             <h5 style={{color:"red",fontSize:"21px"}}>Lưu ý : Hành động này không thể hoàn tác !</h5>
                         </div>
                         <div className="modal-footer">

@@ -1,29 +1,46 @@
-const contractList = [
-    {
-        id: 1,
-        startDay: "01-01-2022",
-        endDay: "01-03-2022",
-        deposit: 2000000,
-        totalPrice: 10000000
-    },
-    {
-        id: 2,
-        startDay: "12-12-2020",
-        endDay: "20-12-2020",
-        deposit: 5000000,
-        totalPrice: 15000000
-    },
-    {
-        id: 3,
-        startDay: "12-01-2023",
-        endDay: "20-05-2023",
-        deposit: 30000000,
-        totalPrice: 50000000
+import {toast} from "react-toastify";
+import axios from "axios";
+
+const URL_CONTRACT = "http://localhost:8080/contract";
+
+export const getAll = async () =>{
+    try {
+        let response = await axios.get(URL_CONTRACT);
+        return response.data;
+    } catch (e){
+        toast.error("Đã xảy ra lỗi !")
     }
-]
-export function getAll() {
-    return contractList;
 }
-export function create(element) {
-    return contractList.push(element);
+
+export const createContract  = async (values) => {
+    try {
+        let response = await axios.post(URL_CONTRACT,values);
+        return response.status;
+    } catch (e){
+        toast.error("Thêm thất bại !");
+    }
+}
+export const findById = async (id) => {
+    try {
+        let response = await axios.get(URL_CONTRACT + "/" + id);
+        return response.data;
+    } catch (e){
+        toast("Không tìm thấy hợp đồng !")
+    }
+}
+export const updateContract = async (values) => {
+    try {
+        let response = await axios.put(URL_CONTRACT + "/" + values.id, values);
+        return response.status;
+    } catch (e){
+        toast.error("Sửa thất bại !");
+    }
+}
+export const deleteContract = async (id) => {
+    try {
+        let response = await axios.delete(URL_CONTRACT + "/" + id);
+        return response.status;
+    } catch (e){
+        toast.error("Xóa thất bại !");
+    }
 }

@@ -7,7 +7,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Customer} from "./components/customer/Customer";
 import {Room} from "./components/manager/Room";
 import CreateRoom from "./components/room/CreateRoom";
-import {Contract} from "./components/manager/Contract";
+import {Contract} from "./components/contract/Contract";
 import {House} from "./components/manager/House";
 import CreateHouse from "./components/house/CreateHouse";
 import {Villa} from "./components/manager/Villa";
@@ -17,6 +17,7 @@ import "react-toastify/dist/ReactToastify.css"
 import CreateContract from "./components/contract/CreateContract";
 import CreateCustomer from "./components/customer/CreateCustomer";
 import UpdateCustomer from "./components/customer/UpdateCustomer";
+import UpdateContract from "./components/contract/UpdateContract";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
@@ -36,6 +37,7 @@ root.render(
                 <Route path="/createContract" element={<CreateContract/>}></Route>
                 <Route path="/createCustomer" element={<CreateCustomer/>}></Route>
                 <Route path="/updateCustomer/:id" element={<UpdateCustomer/>}></Route>
+                <Route path="/updateContract/:id" element={<UpdateContract/>}></Route>
             </Routes>
             <ToastContainer></ToastContainer>
         </BrowserRouter>

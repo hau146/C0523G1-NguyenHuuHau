@@ -2,14 +2,14 @@
   "customer": [
     {
       "id": 1,
-      "name": "Hậu Nguyễn",
+      "name": "Hậu Hữu Nguyễn",
       "date": "2002-02-14",
       "gender": 0,
       "idCard": 949485748394,
       "numberPhone": 909345933,
       "email": "hau@gmail.com",
       "typeCustomer": "Platinum",
-      "address": "Liên chiểu, đà nẵng"
+      "address": "sơn trà, đà nẵng"
     },
     {
       "id": 2,
@@ -76,6 +76,32 @@
       "email": "tiennh@gmail.com",
       "typeCustomer": "Platinum",
       "address": "56 Nguyễn Văn Cừ, TP. Quảng Trạch, Quảng Bình"
+    }
+  ],
+  "contract": [
+    {
+      "id": 1,
+      "name": "HD-VL-001",
+      "startDay": "2022-01-01",
+      "endDay": "2022-03-01",
+      "deposit": 2000000,
+      "totalPrice": 10000000
+    },
+    {
+      "id": 2,
+      "name": "HD-H-002",
+      "startDay": "2020-12-12",
+      "endDay": "2020-12-20",
+      "deposit": 5000000,
+      "totalPrice": 15000000
+    },
+    {
+      "id": 3,
+      "name": "HD-R-003",
+      "startDay": "2023-01-12",
+      "endDay": "2023-05-20",
+      "deposit": 30000000,
+      "totalPrice": 50000000
     }
   ]
 }

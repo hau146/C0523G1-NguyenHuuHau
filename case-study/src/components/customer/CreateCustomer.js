@@ -24,6 +24,7 @@ function CreateCustomer() {
         name: Yup.string()
             .required("Tên khách hàng không được để trống !"),
         date: Yup.date()
+            .max(new Date(), "không được bé hơn ngày hiện tại")
             .required("Ngày sinh khách hàng không được để trống"),
         idCard: Yup.string()
             .required("CMND không được để trống")
