@@ -1,7 +1,7 @@
-import '../css/villa.css'
+import '../../css/villa.css'
 import {Link, useNavigate} from "react-router-dom";
 import {toast} from "react-toastify";
-import * as villaService from '../../service/villa/villa_service'
+import * as villaService from '../../../service/villa/villa_service'
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup";
 

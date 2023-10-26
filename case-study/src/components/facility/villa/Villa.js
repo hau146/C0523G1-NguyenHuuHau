@@ -1,5 +1,5 @@
-import * as villaService from '../../service/villa/villa_service'
-import {LayoutManager} from "../manager/LayoutManager";
+import * as villaService from '../../../service/villa/villa_service'
+import {LayoutManager} from "../../manager/LayoutManager";
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {toast} from "react-toastify";

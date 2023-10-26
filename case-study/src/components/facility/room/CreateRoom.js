@@ -1,29 +1,26 @@
-import {Link, useNavigate, useParams} from "react-router-dom";
-import '../css/room.css'
-import '../css/validate.css'
-import {useEffect, useState} from "react";
+import {Link, useNavigate} from "react-router-dom";
+import '../../css/room.css'
+import '../../css/validate.css'
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as Yup from "yup"
-import * as roomService from '../../service/room/room_service'
+import * as roomService from '../../../service/room/room_service'
 import {toast} from "react-toastify";
-import * as villaService from "../../service/villa/villa_service";
+import * as villaService from "../../../service/villa/villa_service";
 
-function UpdateRoom() {
+function CreateRoom() {
     const navigate = useNavigate();
     const listLease = villaService.lease;
-    const [room, setRoom] = useState();
-    const {id} = useParams();
 
-    useEffect(() => {
-        if (id) findById(id);
-    }, [id])
 
-    const findById = async (id) => {
-        roomService.findById(id).then(res => {
-            setRoom(res);
-        });
+    const initValue = {
+        img: "",
+        title: "",
+        size: 0,
+        rentPrice: 0,
+        numberPeople: 0,
+        lease: "",
+        freeService: ""
     }
-
 
     const validateObject = {
         img: Yup.string()
@@ -32,33 +29,33 @@ function UpdateRoom() {
             .required("Tên phòng không được để trống !"),
         size: Yup.number()
             .required("Diện tích phòng không được để trống !")
-            .min(0, "Diện tích phải lớn hơn 0 !"),
+            .min(0,"Diện tích phải lớn hơn 0 !"),
         rentPrice: Yup.number()
             .required("Chi phí thuê phòng không được để trống !")
-            .min(0, "Chi phí cho thuê phải lớn hơn 0 !"),
+            .min(0,"Chi phí cho thuê phải lớn hơn 0 !"),
         numberPeople: Yup.number()
             .required("Số lượng người ở không được để trống !")
-            .min(1, "Số người ở tối đa phải 1-20 người !"),
+            .min(1,"Số người ở tối đa phải 1-20 người !"),
         lease: Yup.string()
-            .min(0, "Kiểu thuê không được để trống !"),
+            .min(0,"Kiểu thuê không được để trống !"),
         freeService: Yup.string()
             .required("Dịch vụ đi kèm không được để trống !")
-            .matches(/^[a-zA-Z0-9,]*$/g, "Dịch vụ đi kèm không được nhập kí tự đặc biệt !")
+            .matches(/^[a-zA-Z0-9,]*$/g,"Dịch vụ đi kèm không được nhập kí tự đặc biệt !")
     }
 
 
-    const updateRoom = async (values) => {
-        let status = await roomService.updateRoom(values);
-        if (status === 200) {
-            toast.success(`Sửa thông tin dịch vụ ${values.title} thành công !`);
+    const createRoom = async (values) => {
+        let status = await roomService.createRoom(values);
+        if (status === 201){
+            toast.success(`Thêm mới dịch vụ ${values.title} thành công !`);
             navigate("/room");
         } else {
-            toast.warning("Sửa thất bại");
+            toast.warning("Thêm thất bại");
         }
     }
 
 
-    if (!room) return null;
+
 
     return (
         <div className="row">
@@ -72,8 +69,8 @@ function UpdateRoom() {
                         <p></p>
                     </div>
                     <Formik
-                        initialValues={room}
-                        onSubmit={(values) => updateRoom(values)}
+                        initialValues={initValue}
+                        onSubmit={(values) => createRoom(values)}
                         validationSchema={Yup.object(validateObject)}
                     >
 
@@ -81,7 +78,7 @@ function UpdateRoom() {
                         <div className="col-sm-8 p-0 form-input">
                             <Form>
                                 <div className="form-header bg-dark">
-                                    <h2 className="text-light fw-bold ms-3">Sửa thông tin phòng</h2>
+                                    <h2 className="text-light fw-bold ms-3">Thêm mới phòng</h2>
                                 </div>
 
                                 <div className="form-body bg-light p-3">
@@ -175,6 +172,7 @@ function UpdateRoom() {
                                                     component="select"
                                                     name="lease"
                                                     className="form-select">
+                                                    <option value="">---Chọn---</option>
                                                     {listLease.map((type, index) =>
                                                         <option value={type}>{listLease[index]}</option>)}
                                                 </Field>
@@ -205,7 +203,7 @@ function UpdateRoom() {
                                     <div>
                                         <Link to="/room" className="btn btn-primary me-5">Quay lại</Link>
                                         <button type="submit" className="btn btn-secondary me-5">
-                                            <span>Sửa</span>
+                                            <span>Thêm</span>
                                         </button>
                                     </div>
                                 </div>
@@ -218,4 +216,4 @@ function UpdateRoom() {
     );
 }
 
-export default UpdateRoom;
+export default CreateRoom;
