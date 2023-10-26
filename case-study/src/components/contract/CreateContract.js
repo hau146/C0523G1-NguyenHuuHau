@@ -28,10 +28,10 @@ function CreateContract() {
             .min(new Date(), "Ngày hết hợp đồng không được bé hơn ngày hiện tại"),
         deposit: Yup.number()
             .required("Tiền đặt cọc không được để trống !")
-            .min(5000000, "Tiền đặt cọc không được nhỏ hơn 5.000.000"),
+            .min(2000000, "Tiền đặt cọc không được nhỏ hơn 2.000.000"),
         totalPrice: Yup.number()
             .required("Tổng tiền không được để trống")
-            .min(10000000, "Tổng tiền không được nhỏ hơn 10.000.000"),
+            .min(50000000, "Tổng tiền không được nhỏ hơn 5.000.000"),
     }
 
 

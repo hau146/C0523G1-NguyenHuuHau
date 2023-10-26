@@ -3,9 +3,9 @@ import {toast} from "react-toastify";
 
 export const typeCustomer = ["Member", "Silver", "Gold", "Platinum", "Diamond"]
 const URL_CUSTOMER = "http://localhost:8080/customer";
-export const getAll = async () =>{
+export const getAll = async (name) =>{
     try {
-        let response = await axios.get(URL_CUSTOMER);
+        let response = await axios.get(URL_CUSTOMER + `?name_like=${name}`);
         return response.data;
     } catch (e){
         toast.error("Đã xảy ra lỗi !");

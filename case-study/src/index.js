@@ -8,9 +8,9 @@ import {Customer} from "./components/customer/Customer";
 import {Room} from "./components/manager/Room";
 import CreateRoom from "./components/room/CreateRoom";
 import {Contract} from "./components/contract/Contract";
-import {House} from "./components/manager/House";
+import {House} from "./components/house/House";
 import CreateHouse from "./components/house/CreateHouse";
-import {Villa} from "./components/manager/Villa";
+import {Villa} from "./components/villa/Villa";
 import CreateVilla from "./components/villa/CreateVilla";
 import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
@@ -18,6 +18,9 @@ import CreateContract from "./components/contract/CreateContract";
 import CreateCustomer from "./components/customer/CreateCustomer";
 import UpdateCustomer from "./components/customer/UpdateCustomer";
 import UpdateContract from "./components/contract/UpdateContract";
+import UpdateVilla from "./components/villa/UpdateVilla";
+import UpdateHouse from "./components/house/UpdateHouse";
+import UpdateRoom from "./components/room/UpdateRoom";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 
@@ -38,6 +41,9 @@ root.render(
                 <Route path="/createCustomer" element={<CreateCustomer/>}></Route>
                 <Route path="/updateCustomer/:id" element={<UpdateCustomer/>}></Route>
                 <Route path="/updateContract/:id" element={<UpdateContract/>}></Route>
+                <Route path="/updateVilla/:id" element={<UpdateVilla/>}></Route>
+                <Route path="/updateHouse/:id" element={<UpdateHouse/>}></Route>
+                <Route path="/updateRoom/:id" element={<UpdateRoom/>}></Route>
             </Routes>
             <ToastContainer></ToastContainer>
         </BrowserRouter>

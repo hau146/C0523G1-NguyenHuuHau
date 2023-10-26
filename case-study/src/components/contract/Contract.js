@@ -96,7 +96,7 @@ export function Contract() {
                             </div>
                             <div className="product-cell">{contract.deposit}</div>
                             <div className="product-cell">{contract.totalPrice}</div>
-                            <div className="product-cell">
+                            <div className="product-cell" style={{width: "20px"}}>
                                 <Link to={`/updateContract/${contract.id}`} className="nav-link">SỬA</Link>
 
                                 <button onClick={(event) => sendInfoToModal(contract.id,contract.name)}

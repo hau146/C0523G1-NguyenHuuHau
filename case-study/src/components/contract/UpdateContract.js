@@ -1,4 +1,6 @@
-import {Link, useNavigate, useParams} from "react-router-dom";
+import
+
+{Link, useNavigate, useParams} from "react-router-dom";
 import '../css/contract.css'
 import '../css/validate.css'
 import {ErrorMessage, Field, Form, Formik} from "formik";

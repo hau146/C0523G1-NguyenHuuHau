@@ -5,9 +5,11 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import {toast} from "react-toastify";
 import * as Yup from "yup"
 import * as customerService from '../../service/customer/customer_service'
+import {date} from "yup";
 function CreateCustomer() {
     const navigate = useNavigate();
     const listTypeCustomer = customerService.typeCustomer;
+
 
     const initValue = {
         name: "",
@@ -24,7 +26,6 @@ function CreateCustomer() {
         name: Yup.string()
             .required("Tên khách hàng không được để trống !"),
         date: Yup.date()
-            .max(new Date(), "không được bé hơn ngày hiện tại")
             .required("Ngày sinh khách hàng không được để trống"),
         idCard: Yup.string()
             .required("CMND không được để trống")

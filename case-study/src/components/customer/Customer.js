@@ -2,7 +2,7 @@ import * as customerService from '../../service/customer/customer_service'
 import {LayoutManager} from "../manager/LayoutManager";
 import ReactPaginate from 'react-paginate';
 import {useEffect, useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {toast} from "react-toastify";
 import {FormatDay} from "../format/FormatDay";
 
@@ -10,14 +10,15 @@ export function Customer(s) {
     const [total, setTotal] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
     const [customer, setCustomer] = useState([])
+    let [name, setName] = useState("");
     let idDelete = -1;
 
     useEffect(() =>{
         getAll();
-    }, []);
+    }, [name]);
 
     const getAll = async () => {
-        let response = await customerService.getAll();
+        let response = await customerService.getAll(name);
         setCustomer(response);
     }
     function handlePageClick() {
@@ -50,7 +51,8 @@ export function Customer(s) {
                 </div>
 
                 <div className="app-content-actions">
-                    <input className="search-bar" placeholder="Tìm tên khách hàng..." type="text"/>
+                    <input onChange={(values) => setName(values.target.value)} className="search-bar" placeholder="Tìm tên khách hàng..." type="text"/>
+                    <input style={{margin: "0 0 0 15px"}} onChange={(values) => setName(values.target.value)} className="search-bar" placeholder="Tìm loại khách hàng..." type="text"/>
                     <div className="app-content-actions-wrapper">
                         <button className="app-content-headerButton bg-dark">
                             <Link to="/createCustomer" className="link">Thêm khách hàng mới</Link>
@@ -117,7 +119,7 @@ export function Customer(s) {
                             <div className="product-cell">{customer.email}</div>
                             <div className="product-cell">{customer.typeCustomer}</div>
                             <div className="product-cell">{customer.address}</div>
-                            <div className="product-cell">
+                            <div className="product-cell" style={{width: "20px"}}>
                                 <Link to={`/updateCustomer/${customer.id}`} className="nav-link">SỬA</Link>
 
                                 <button onClick={(event) => sendInfoToModal(customer.id,customer.name)}

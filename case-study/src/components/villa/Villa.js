@@ -1,7 +1,41 @@
 import * as villaService from '../../service/villa/villa_service'
-import {LayoutManager} from "./LayoutManager";
+import {LayoutManager} from "../manager/LayoutManager";
 import {Link} from "react-router-dom";
+import {useEffect, useState} from "react";
+import {toast} from "react-toastify";
 export function Villa() {
+    const [villa, setVilla] = useState([]);
+    let idDelete = -1;
+    let titleDelete = "";
+    useEffect(() => {
+        getAll();
+    }, []);
+
+    const getAll = async () => {
+        let response = await villaService.getAll();
+        setVilla(response);
+    }
+
+    function sendInfoToModal(id, title) {
+        document.getElementById("title_delete").innerText = title;
+        titleDelete = title
+        idDelete = id;
+    }
+
+    const deleteById = async (idDelete) => {
+        let status = await villaService.deleteVilla(idDelete);
+        console.log(status);
+        if (status === 200){
+            toast.success(`Xóa thành công biệt thự ${titleDelete} !`);
+            getAll();
+        } else {
+            toast.warning("Xóa thất bại !");
+        }
+
+    }
+
+    if(!villa) return null
+
     return (
         <div className="app-container">
             <LayoutManager/>
@@ -58,12 +92,15 @@ export function Villa() {
                             <button className="sort-button">
                             </button>
                         </div>
+                        <div className="product-cell price">Thao tác
+                            <button className="sort-button">
+                            </button>
+                        </div>
                     </div>
-                    {villaService.getAll().map((villa, index) => (
+                    {villa.map((villa, index) => (
                         <div className="products-row" key={villa.id}>
                             <div className="product-index2">
                                 {index + 1}
-                                {/*<span className="status active">{index + 1}</span>*/}
                             </div>
                             <div className="product-cell">
                                 <img src={villa.img} alt=""/>
@@ -81,8 +118,48 @@ export function Villa() {
                             <div className="product-cell">{villa.describe}</div>
                             <div className="product-cell">{villa.poolVolume} m<sup>2</sup></div>
                             <div className="product-cell">{villa.numberFloors}</div>
+                            <div className="product-cell" style={{width: "25px"}}>
+                                <Link to={`/updateVilla/${villa.id}`} className="nav-link">SỬA</Link>
+
+                                <button onClick={(event) => sendInfoToModal(villa.id,villa.title)}
+                                        style={{margin: "0 0 0 5px", background: "transparent",border: "none", color:"black",fontSize:"13px"}}
+                                        type="button"
+                                        className="btn btn-primary" data-bs-toggle="modal"
+                                        data-bs-target="#exampleModal">
+                                    Xóa
+                                </button>
+                            </div>
                         </div>
                     ))}
+                </div>
+            </div>
+
+
+            <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">Xóa Biệt Thự !</h1>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+                            <input type="hidden" name="id_delete"/>
+                            Bạn có chắc muốn xóa biệt thự <span id="title_delete" className="text-danger"></span> này?
+                            <h5 style={{color:"red",fontSize:"21px"}}>Lưu ý : Hành động này không thể hoàn tác !</h5>
+                        </div>
+                        <div className="modal-footer">
+                            <button style={{height:"47px"}} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                            <button
+                                data-bs-dismiss="modal"
+                                onClick={(event) => deleteById(idDelete)}
+                                type="button"
+                                className="btn btn-primary"
+                                style={{height: "47px",width: "124px"}}
+                            >Xác nhận</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -1,28 +1,28 @@
 import '../css/house.css'
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as villaService from "../../service/villa/villa_service";
 import * as Yup from "yup";
 import * as houseService from '../../service/house/house_service'
 import {toast} from "react-toastify";
+import {useEffect, useState} from "react";
 
 
-function CreateHouse() {
+function UpdateHouse() {
     const navigate = useNavigate();
     const listLease = villaService.lease;
+    const [house, setHouse] = useState();
+    const {id} = useParams();
+    useEffect(() => {
+        if (id) findById(id);
+    }, [id])
 
-    const initValue = {
-        img: "",
-        title: "",
-        size: 0,
-        rentPrice: 0,
-        numberPeople: 0,
-        lease: "",
-        roomStandard: "",
-        describe: "",
-        numberFloors: 0
+    const findById = async (id) => {
+        houseService.findById(id).then(res => {
+            console.log(res);
+            setHouse(res);
+        });
     }
-
 
     const validateObject = {
         img: Yup.string()
@@ -36,7 +36,7 @@ function CreateHouse() {
         numberPeople: Yup.number()
             .min(0, "Số người tối đa không được để trống"),
         lease: Yup.string()
-            .min(0,"Kiểu thuê không được để trống"),
+            .min(0, "Kiểu thuê không được để trống"),
         roomStandard: Yup.string()
             .required("Tiêu chuẩn phòng không được để trống"),
         describe: Yup.string()
@@ -45,16 +45,16 @@ function CreateHouse() {
             .min(0, "Số tầng không được để trống")
     }
 
-    const createHouse = async (values) => {
-        let status = await houseService.createHouse(values);
-        if (status === 201) {
-            toast.success(`Thêm mới ${values.title} thành công !`);
+    const updateHouse = async (values) => {
+        let status = await houseService.updateHouse(values);
+        if (status === 200) {
+            toast.success(`Sửa thông tin ${values.title} thành công !`);
             navigate("/house");
         } else {
-            toast.warning("Thêm mới thất bại");
+            toast.warning("Sửa thất bại");
         }
     }
-
+    if (!house) return null;
     return (
         <div className="row">
             <div className="col-lg-3 col-md-2">
@@ -68,14 +68,14 @@ function CreateHouse() {
                     </div>
 
                     <Formik
-                        initialValues={initValue}
-                        onSubmit={(values) => createHouse(values)}
+                        initialValues={house}
+                        onSubmit={(values) => updateHouse(values)}
                         validationSchema={Yup.object(validateObject)}
                     >
                         <div className="col-sm-8 p-0">
                             <Form>
                                 <div className="form-header bg-dark">
-                                    <h2 className="text-light fw-bold ms-3">Thêm mới nhà</h2>
+                                    <h2 className="text-light fw-bold ms-3">Sửa thông tin nhà</h2>
                                 </div>
 
                                 <div className="form-body bg-light p-3">
@@ -226,7 +226,7 @@ function CreateHouse() {
                                 <div className="form-footer bg-dark p-3">
                                     <div>
                                         <Link to="/house" className="btn btn-secondary me-5">Quay lại</Link>
-                                        <button type="submit" className="btn btn-primary">Thêm</button>
+                                        <button type="submit" className="btn btn-primary">Sửa</button>
                                     </div>
                                 </div>
                             </Form>
@@ -239,4 +239,4 @@ function CreateHouse() {
     );
 }
 
-export default CreateHouse;
+export default UpdateHouse;
