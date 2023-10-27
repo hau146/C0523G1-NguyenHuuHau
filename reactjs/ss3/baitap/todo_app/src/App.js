@@ -1,8 +1,10 @@
 import './App.css';
-import Todo from "./component/Todo";
+import TodoComponent from './component/'
 function App() {
   return (
-      <Todo/>
+      <div>
+        <TodoComponent/>
+      </div>
   );
 }
 

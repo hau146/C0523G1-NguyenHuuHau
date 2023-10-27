@@ -4,44 +4,56 @@
       "id": 1,
       "name": "Hậu Hữu Nguyễn",
       "date": "2002-02-14",
-      "gender": 0,
+      "gender": "0",
       "idCard": 949485748394,
-      "numberPhone": 909345933,
+      "numberPhone": "0902323232",
       "email": "hau@gmail.com",
-      "typeCustomer": "Platinum",
+      "typeCustomer": {
+        "id": "3",
+        "name": "Gold"
+      },
       "address": "sơn trà, đà nẵng"
     },
     {
       "id": 2,
       "name": "Trịnh Đình Tuấn",
       "date": "2002-11-21",
-      "gender": 0,
+      "gender": "0",
       "idCard": "046808088993",
-      "numberPhone": "04565393939",
+      "numberPhone": "0902323232",
       "email": "tuantd@gmail.com",
-      "typeCustomer": "Member",
+      "typeCustomer": {
+        "id": "5",
+        "name": "Diamond"
+      },
       "address": "53 Ngô Quyền, TP. Huế, Thừa Thiên Huế"
     },
     {
       "id": 3,
       "name": "Trần Tứ Xuyên",
       "date": "1994-02-22",
-      "gender": 1,
+      "gender": "1",
       "idCard": "048089888991",
-      "numberPhone": "0965757575",
+      "numberPhone": "0902323233",
       "email": "xuyentt@gmail.com",
-      "typeCustomer": "Silver",
+      "typeCustomer": {
+        "id": "5",
+        "name": "Diamond"
+      },
       "address": "217 Nguyễn Thị Minh Khai, TP. Đà Nẵng"
     },
     {
       "id": 4,
       "name": "Bùi Thanh Tâm",
       "date": "2001-12-23",
-      "gender": 1,
+      "gender": "1",
       "idCard": "046109088289",
-      "numberPhone": "0984848484",
+      "numberPhone": "0902323232",
       "email": "tambt@gmail.com",
-      "typeCustomer": "Diamond",
+      "typeCustomer": {
+        "id": "2",
+        "name": "Silver"
+      },
       "address": "53 Nguyễn Văn Cừ, TP. Huế, Thừa Thiên Huế"
     },
     {
@@ -52,30 +64,75 @@
       "idCard": "048909088899",
       "numberPhone": "0907373737",
       "email": "thongvv@gmail.com",
-      "typeCustomer": "Diamond",
+      "typeCustomer": {
+        "id": "3",
+        "name": "Gold"
+      },
       "address": "76 Hùng Vương, TP. Đà Nẵng"
-    },
-    {
-      "id": 6,
-      "name": "Bùi Thanh Quang",
-      "date": "1995-02-24",
-      "gender": 0,
-      "idCard": "0934753494",
-      "numberPhone": "0967676767",
-      "email": "quangbt@gmail.com",
-      "typeCustomer": "Gold",
-      "address": "90 Nguyễn Tất Thành, TP. Đà Nẵng"
     },
     {
       "id": 7,
       "name": "Nguyễn Hồng Tiên",
       "date": "1997-12-06",
-      "gender": 1,
+      "gender": "1",
       "idCard": "044289888387",
       "numberPhone": "0907373737",
       "email": "tiennh@gmail.com",
-      "typeCustomer": "Platinum",
+      "typeCustomer": {
+        "id": "2",
+        "name": "Silver"
+      },
       "address": "56 Nguyễn Văn Cừ, TP. Quảng Trạch, Quảng Bình"
+    },
+    {
+      "id": 8,
+      "name": "Trương Văn Huệ Minh",
+      "date": "2023-10-21",
+      "gender": "0",
+      "idCard": 584758493849,
+      "numberPhone": "0902323233",
+      "email": "sang@gmail.com",
+      "typeCustomer": {
+        "id": "1",
+        "name": "Member"
+      },
+      "address": "Liên chiểu, đà nẵng"
+    },
+    {
+      "name": "sang",
+      "date": "2023-10-17",
+      "gender": "0",
+      "idCard": 584758493849,
+      "numberPhone": "0902323232",
+      "email": "sang@gmail.com",
+      "typeCustomer": {
+        "id": "1",
+        "name": "Member"
+      },
+      "address": "Liên chiểu, đà nẵng",
+      "id": 9
+    }
+  ],
+  "typeCustomer": [
+    {
+      "id": "1",
+      "name": "Member"
+    },
+    {
+      "id": "2",
+      "name": "Silver"
+    },
+    {
+      "id": "3",
+      "name": "Gold"
+    },
+    {
+      "id": "4",
+      "name": "Platinum"
+    },
+    {
+      "id": "5",
+      "name": "Diamond"
     }
   ],
   "contract": [
@@ -206,30 +263,6 @@
       "roomStandard": "bếp hiện đại, có nhà mini pet, ban công view sân bay",
       "describe": "thiết kế đẳng cấp vippro, siêu sang xịn mịn",
       "numberFloors": 4
-    },
-    {
-      "img": "https://i.pinimg.com/564x/e9/9b/99/e99b9918ae1d58944a0457514f5616fb.jpg",
-      "title": "xczx",
-      "size": "12",
-      "rentPrice": "12",
-      "numberPeople": "12",
-      "lease": "ngày",
-      "roomStandard": "cửa tự động, thực đơn free 20h mỗi ngày",
-      "describe": "xzcxz",
-      "numberFloors": "12",
-      "id": 5
-    },
-    {
-      "img": "zxc",
-      "title": "xzc",
-      "size": 2,
-      "rentPrice": 2,
-      "numberPeople": 2,
-      "lease": "giờ",
-      "roomStandard": "cửa tự động, thực đơn free 20h mỗi ngày",
-      "describe": "zx",
-      "numberFloors": 1,
-      "id": 6
     }
   ],
   "room": [

@@ -4,5 +4,9 @@
     <mapping directory="$PROJECT_DIR$" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/case-study" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/reactjs/ss2/student" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/reactjs/ss5/baitap/contact-form" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/reactjs/ss5/baitap/with-validate" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/reactjs/ss5/thuchanh/thuchanh" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/reactjs/ss8/covid" vcs="Git" />
   </component>
 </project>

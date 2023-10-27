@@ -3,9 +3,17 @@ import {toast} from "react-toastify";
 
 export const typeCustomer = ["Member", "Silver", "Gold", "Platinum", "Diamond"]
 const URL_CUSTOMER = "http://localhost:8080/customer";
-export const getAll = async (name) =>{
+export const getAll = async (name,typeCustomer) =>{
     try {
-        let response = await axios.get(URL_CUSTOMER + `?name_like=${name}`);
+        let response = await axios.get(URL_CUSTOMER + `?name_like=${name}&typeCustomer.name_like=${typeCustomer}&_sort=id&_order=desc`);
+        return response.data;
+    } catch (e){
+        toast.error("Đã xảy ra lỗi !");
+    }
+}
+export const getAllTypeCustomer = async () =>{
+    try {
+        let response = await axios.get("http://localhost:8080/typeCustomer");
         return response.data;
     } catch (e){
         toast.error("Đã xảy ra lỗi !");

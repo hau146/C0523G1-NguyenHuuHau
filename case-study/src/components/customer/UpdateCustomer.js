@@ -9,12 +9,12 @@ import {useEffect, useState} from "react";
 
 function UpdateCustomer() {
     const navigate = useNavigate();
-    const listTypeCustomer = customerService.typeCustomer;
     const [customer, setCustomer] = useState();
+    const [typeCustomer, setTypeCustomer] = useState([]);
     const {id} = useParams();
     useEffect(() => {
         if (id) customerById(id);
-        console.log("Hi" + id)
+        getAllTypeCustomer()
     }, [id]);
 
 
@@ -23,8 +23,14 @@ function UpdateCustomer() {
         customerService.findById(id).then(res => {
             res.gender = res.gender + "";
             console.log(res)
+            res.typeCustomer = JSON.stringify(res.typeCustomer);
             setCustomer(res);
         })
+    }
+
+    const getAllTypeCustomer = async () => {
+        let data = await  customerService.getAllTypeCustomer();
+        setTypeCustomer(data);
     }
 
 
@@ -38,12 +44,10 @@ function UpdateCustomer() {
             .length(12, "CMND phải đủ và không đuợc quá 12 số"),
         numberPhone: Yup.string()
             .required("Số điện thoại không được để trống")
-            .length(9, "Số điện thoại phải đủ và không được quá 10 số"),
+            .matches(/^(?:\(\d+\)\+)?(09[01]\d{7}|(84)\+09[01]\d{9})$/,"số điện thoại phải bắt đầu từ số 0 hoặc (+84)"),
         email: Yup.string()
             .required("Email không được để trống !")
             .matches(/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/, "Email sai định dạng"),
-        typeCustomer: Yup.string()
-            .min(0, "Loại khách hàng không được để trống !"),
         address: Yup.string()
             .required("Địa chỉ không được để trống !"),
         gender: Yup.string()
@@ -51,21 +55,11 @@ function UpdateCustomer() {
     }
 
     const updateCustomer = async (values) => {
-        const object = {
-            id: values.id,
-            name: values.name,
-            date: values.date,
-            gender: values.gender = +values.gender,
-            idCard: values.idCard,
-            numberPhone: values.numberPhone,
-            email: values.email,
-            typeCustomer: values.typeCustomer,
-            address: values.address
-        }
-        console.log(object)
-        let status = await customerService.updateCustomer(object);
+        const data = {...values, typeCustomer: JSON.parse(values.typeCustomer)}
+        console.log(data)
+        let status = await customerService.updateCustomer(data);
         if (status === 200) {
-            toast.success(`Sửa thông tin khách hàng ${object.name} thành công !`);
+            toast.success(`Sửa thông tin khách hàng ${values.name} thành công !`);
             navigate("/customer");
         } else {
             toast.warning("Sửa thất bại !")
@@ -197,7 +191,7 @@ function UpdateCustomer() {
                                         <div className="col-sm-8">
                                             <div className="input">
                                                 <Field
-                                                    type="number"
+                                                    type="text"
                                                     name="numberPhone"
                                                     className="form-control"/>
                                             </div>
@@ -232,9 +226,9 @@ function UpdateCustomer() {
                                                     component="select"
                                                     name="typeCustomer"
                                                     className="form-select">
-                                                    <option value="">---Chọn---</option>
-                                                    {listTypeCustomer.map((type, index) =>
-                                                        <option value={type}>{listTypeCustomer[index]}</option>)}
+                                                    {typeCustomer.map(type => {
+                                                        return <option key={type.id} value={JSON.stringify(type)}>{type.name}</option>
+                                                    })}
                                                 </Field>
                                             </div>
                                             <ErrorMessage name="typeCustomer" component="span"

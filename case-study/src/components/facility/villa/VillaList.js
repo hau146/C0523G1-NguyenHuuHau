@@ -1,11 +1,10 @@
-import * as houseService from '../../../service/house/house_service'
+import * as villaService from '../../../service/villa/villa_service'
 import {LayoutManager} from "../../manager/LayoutManager";
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {toast} from "react-toastify";
-
-export function House() {
-    const [house, setHouse] = useState([]);
+export function VillaList() {
+    const [villa, setVilla] = useState([]);
     let idDelete = -1;
     let titleDelete = "";
     useEffect(() => {
@@ -13,8 +12,8 @@ export function House() {
     }, []);
 
     const getAll = async () => {
-        let response = await houseService.getAll();
-        setHouse(response);
+        let response = await villaService.getAll();
+        setVilla(response);
     }
 
     function sendInfoToModal(id, title) {
@@ -24,29 +23,32 @@ export function House() {
     }
 
     const deleteById = async (idDelete) => {
-        let status = await houseService.deleteHouse(idDelete);
+        let status = await villaService.deleteVilla(idDelete);
         console.log(status);
-        if (status === 200) {
-            toast.success(`Xóa thành công dịch vụ ${titleDelete} !`);
+        if (status === 200){
+            toast.success(`Xóa thành công biệt thự ${titleDelete} !`);
             getAll();
         } else {
             toast.warning("Xóa thất bại !");
         }
+
     }
+
+    if(!villa) return null
 
     return (
         <div className="app-container">
             <LayoutManager/>
             <div className="app-content">
                 <div className="app-content-header">
-                    <h1 className="app-content-headerText">Nhà</h1>
+                    <h1 className="app-content-headerText">Biệt Thự</h1>
                 </div>
 
                 <div className="app-content-actions">
-                    <input className="search-bar" placeholder="Tìm tên nhà..." type="text"/>
+                    <input className="search-bar" placeholder="Tìm tên biệt thự..." type="text"/>
                     <div className="app-content-actions-wrapper">
                         <button className="app-content-headerButton bg-dark">
-                            <Link to="/createHouse" className="link">Thêm nhà mới</Link>
+                            <Link to="/createVilla" className="link">Thêm biệt thự mới</Link>
                         </button>
                     </div>
                 </div>
@@ -54,7 +56,7 @@ export function House() {
                     <div className="products-header">
                         <div className="product-index">#
                         </div>
-                        <div className="product-cell image">Tên nhà
+                        <div className="product-cell image">Tên biệt thự
                             <button className="sort-button">
                             </button>
                         </div>
@@ -74,11 +76,15 @@ export function House() {
                             <button className="sort-button">
                             </button>
                         </div>
-                        <div className="product-cell price">Tiêu chuẩn nhà
+                        <div className="product-cell price">Tiêu chuẩn biệt thự
                             <button className="sort-button">
                             </button>
                         </div>
                         <div className="product-cell price">Tiện nghi
+                            <button className="sort-button">
+                            </button>
+                        </div>
+                        <div className="product-cell price">Diện tích hồ bơi
                             <button className="sort-button">
                             </button>
                         </div>
@@ -91,38 +97,32 @@ export function House() {
                             </button>
                         </div>
                     </div>
-                    {house.map((house, index) => (
-                        <div className="products-row" key={house.id}>
+                    {villa.map((villa, index) => (
+                        <div className="products-row" key={villa.id}>
                             <div className="product-index2">
                                 {index + 1}
-                                {/*<span className="status active">{index + 1}</span>*/}
                             </div>
                             <div className="product-cell">
-                                <img src={house.img} alt=""/>
-                                <span>{house.title}</span>
+                                <img src={villa.img} alt=""/>
+                                <span>{villa.title}</span>
                             </div>
                             <div className="product-cell">
-                                {house.size} m<sup>2</sup>
+                                {villa.size} m<sup>2</sup>
                             </div>
                             <div className="product-cell">
-                                {house.rentPrice}
+                                {villa.rentPrice}
                             </div>
-                            <div className="product-cell">{house.numberPeople}</div>
-                            <div className="product-cell">{house.lease}</div>
-                            <div className="product-cell">{house.roomStandard}</div>
-                            <div className="product-cell">{house.describe}</div>
-                            <div className="product-cell">{house.numberFloors}</div>
-                            <div className="product-cell" style={{width: "20px"}}>
-                                <Link to={`/updateHouse/${house.id}`} className="nav-link">SỬA</Link>
+                            <div className="product-cell">{villa.numberPeople}</div>
+                            <div className="product-cell">{villa.lease}</div>
+                            <div className="product-cell">{villa.roomStandard}</div>
+                            <div className="product-cell">{villa.describe}</div>
+                            <div className="product-cell">{villa.poolVolume} m<sup>2</sup></div>
+                            <div className="product-cell">{villa.numberFloors}</div>
+                            <div className="product-cell" style={{width: "25px"}}>
+                                <Link to={`/updateVilla/${villa.id}`} className="nav-link">SỬA</Link>
 
-                                <button onClick={(event) => sendInfoToModal(house.id, house.title)}
-                                        style={{
-                                            margin: "0 0 0 5px",
-                                            background: "transparent",
-                                            border: "none",
-                                            color: "black",
-                                            fontSize: "13px"
-                                        }}
+                                <button onClick={(event) => sendInfoToModal(villa.id,villa.title)}
+                                        style={{margin: "0 0 0 5px", background: "transparent",border: "none", color:"black",fontSize:"13px"}}
                                         type="button"
                                         className="btn btn-primary" data-bs-toggle="modal"
                                         data-bs-target="#exampleModal">
@@ -140,27 +140,24 @@ export function House() {
                 <div className="modal-dialog">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h1 className="modal-title fs-5" id="exampleModalLabel">Xóa Dịch Vụ !</h1>
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">Xóa Biệt Thự !</h1>
                             <button type="button" className="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
                             <input type="hidden" name="id_delete"/>
-                            Bạn có chắc muốn xóa dịch vụ <span id="title_delete" className="text-danger"></span> này?
-                            <h5 style={{color: "red", fontSize: "21px"}}>Lưu ý : Hành động này không thể hoàn tác !</h5>
+                            Bạn có chắc muốn xóa biệt thự <span id="title_delete" className="text-danger"></span> này?
+                            <h5 style={{color:"red",fontSize:"21px"}}>Lưu ý : Hành động này không thể hoàn tác !</h5>
                         </div>
                         <div className="modal-footer">
-                            <button style={{height: "47px"}} type="button" className="btn btn-secondary"
-                                    data-bs-dismiss="modal">Hủy
-                            </button>
+                            <button style={{height:"47px"}} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
                             <button
                                 data-bs-dismiss="modal"
                                 onClick={(event) => deleteById(idDelete)}
                                 type="button"
                                 className="btn btn-primary"
-                                style={{height: "47px", width: "124px"}}
-                            >Xác nhận
-                            </button>
+                                style={{height: "47px",width: "124px"}}
+                            >Xác nhận</button>
                         </div>
                     </div>
                 </div>

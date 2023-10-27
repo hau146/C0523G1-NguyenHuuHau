@@ -6,20 +6,21 @@ import {Link} from "react-router-dom";
 import {toast} from "react-toastify";
 import {FormatDay} from "../format/FormatDay";
 
-export function Customer(s) {
+export function CustomerList() {
     const [total, setTotal] = useState(0);
     const [totalPages, setTotalPages] = useState(0);
-    const [customer, setCustomer] = useState([])
+    const [customer, setCustomer] = useState([]);
+    let [typeCustomer, setTypeCustomer] = useState("")
     let [name, setName] = useState("");
     let idDelete = -1;
 
     useEffect(() =>{
         getAll();
-    }, [name]);
+    }, [name,typeCustomer]);
 
     const getAll = async () => {
-        let response = await customerService.getAll(name);
-        setCustomer(response);
+        let data = await customerService.getAll(name,typeCustomer);
+        setCustomer(data);
     }
     function handlePageClick() {
 
@@ -42,6 +43,8 @@ export function Customer(s) {
             idDelete = id;
         console.log(idDelete + " id đã có")
     }
+
+    if(!customer) return null
     return (
         <div className="app-container">
             <LayoutManager/>
@@ -52,7 +55,7 @@ export function Customer(s) {
 
                 <div className="app-content-actions">
                     <input onChange={(values) => setName(values.target.value)} className="search-bar" placeholder="Tìm tên khách hàng..." type="text"/>
-                    <input style={{margin: "0 0 0 15px"}} onChange={(values) => setName(values.target.value)} className="search-bar" placeholder="Tìm loại khách hàng..." type="text"/>
+                    <input style={{margin: "0 0 0 15px"}} onChange={(values) => setTypeCustomer(values.target.value)} className="search-bar" placeholder="Tìm loại khách hàng..." type="text"/>
                     <div className="app-content-actions-wrapper">
                         <button className="app-content-headerButton bg-dark">
                             <Link to="/createCustomer" className="link">Thêm khách hàng mới</Link>
@@ -117,7 +120,7 @@ export function Customer(s) {
                             <div className="product-cell">{customer.idCard}</div>
                             <div className="product-cell">{customer.numberPhone}</div>
                             <div className="product-cell">{customer.email}</div>
-                            <div className="product-cell">{customer.typeCustomer}</div>
+                            <div className="product-cell">{customer.typeCustomer.name}</div>
                             <div className="product-cell">{customer.address}</div>
                             <div className="product-cell" style={{width: "20px"}}>
                                 <Link to={`/updateCustomer/${customer.id}`} className="nav-link">SỬA</Link>
@@ -168,7 +171,7 @@ export function Customer(s) {
                         <div className="modal-body">
                             <input type="hidden" name="id_delete"/>
                             Bạn có chắc muốn xóa khách hàng <span id="name_delete" className="text-danger"></span> ?
-                            <h5 style={{color:"red",fontSize:"21px"}}>Lưu ý : Hành động này không thể hoàn tác !</h5>
+                            <h5 style={{color:"red",fontSize:"19px"}}>Lưu ý : Hành động này không thể hoàn tác !</h5>
                         </div>
                         <div className="modal-footer">
                             <button style={{height:"47px"}} type="button" className="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>

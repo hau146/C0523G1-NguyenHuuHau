@@ -5,7 +5,7 @@ import {useEffect, useState} from "react";
 import {FormatDay} from "../format/FormatDay";
 import {toast} from "react-toastify";
 
-export function Contract() {
+export function ContractList() {
     const [contract, setContract] = useState([]);
     let idDelete = -1;
     useEffect(() => {

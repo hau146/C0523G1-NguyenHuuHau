@@ -4,13 +4,13 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import {Customer} from "./components/customer/Customer";
-import {Room} from "./components/facility/room/Room";
+import {CustomerList} from "./components/customer/CustomerList";
+import {RoomList} from "./components/facility/room/RoomList";
 import CreateRoom from "./components/facility/room/CreateRoom";
-import {Contract} from "./components/contract/Contract";
-import {House} from "./components/facility/house/House";
+import {ContractList} from "./components/contract/ContractList";
+import {HouseList} from "./components/facility/house/HouseList";
 import CreateHouse from "./components/facility/house/CreateHouse";
-import {Villa} from "./components/facility/villa/Villa";
+import {VillaList} from "./components/facility/villa/VillaList";
 import CreateVilla from "./components/facility/villa/CreateVilla";
 import {ToastContainer} from "react-toastify";
 import "react-toastify/dist/ReactToastify.css"
@@ -29,11 +29,11 @@ root.render(
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={<App />}></Route>
-                <Route path="/customer" element={<Customer/>}></Route>
-                <Route path="/villa" element={<Villa/>}></Route>
-                <Route path="/room" element={<Room/>}></Route>
-                <Route path="/house" element={<House/>}></Route>
-                <Route path="/contract" element={<Contract/>}></Route>
+                <Route path="/customer" element={<CustomerList/>}></Route>
+                <Route path="/villa" element={<VillaList/>}></Route>
+                <Route path="/room" element={<RoomList/>}></Route>
+                <Route path="/house" element={<HouseList/>}></Route>
+                <Route path="/contract" element={<ContractList/>}></Route>
                 <Route path="/createVilla" element={<CreateVilla/>}></Route>
                 <Route path="/createRoom" element={<CreateRoom/>}></Route>
                 <Route path="/createHouse" element={<CreateHouse/>}></Route>
