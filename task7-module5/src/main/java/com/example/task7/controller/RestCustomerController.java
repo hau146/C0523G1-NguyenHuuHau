@@ -20,12 +20,9 @@ public class RestCustomerController {
     private ICustomerService customerService;
     @GetMapping("")
     public ResponseEntity<List<Customer>> getAll(
-//            @RequestParam(name = "_page",defaultValue = "1") int currentPage,
-//            @RequestParam(name = "_limit",defaultValue = "5") int sizePage,
             @RequestParam(name = "name_like",defaultValue = "") String name,
             @RequestParam(name = "typeCustomer.name_like",defaultValue = "") String typeCustomer
     ){
-//        Pageable pageable = PageRequest.of(currentPage-1,sizePage);
         List<Customer> customers = customerService.getAll(name,typeCustomer);
         if(customers.isEmpty()){
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
